@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SLI</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_learn_page">LearnPage</string>
+    <string name="title_activity_interpret_page">InterpretPage</string>
+    <string name="GalleryButton">Gallery</string>
+    <string name="CameraButton">Camera</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_output_page">OutputPage</string>
+    <string name="answerImage">FinalImageToShow</string>
+</resources>
