@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -19,6 +20,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -44,6 +46,12 @@ public class InterpretPage extends AppCompatActivity {
         MyCamera = (Button) findViewById(R.id.myCamera);
         gestureDetector = new GestureDetectorCompat(this, new MyGestureListener());//navigation model a listener to go back to main page
 
+
+        // to see if the user has a camera else disable the button;
+        if (!hasCamera()) {
+            Log.i(TAG, "Check Camera");
+            MyCamera.setEnabled(false);
+        }
         r = new Runnable() {
             @Override
             public void run() {
@@ -52,13 +60,11 @@ public class InterpretPage extends AppCompatActivity {
                     dbImages = db.getImages();
                 }
             }
-        }; // a runnable object for thread operation
+        }; //a runnable object for thread operation
+        Log.i(TAG, "thread start");
+        Thread ImageThread = new Thread(r);
+        ImageThread.start();// perform the db query on a different thread
 
-        // to see if the user has a camera else disable the button;
-        if (!hasCamera()) {
-            Log.i(TAG, "Check Camera");
-            MyCamera.setEnabled(false);
-        }
     }
 //to check if user has a camera then the button is enabled(during creation)
 
@@ -116,7 +122,6 @@ public class InterpretPage extends AppCompatActivity {
 
     //convert the selected image on grayscale and resize it to 128*128 and then convert it into byte array
     public void Starting(Bitmap selectedImage) {
-        Log.i(TAG, "THREAD STARTED");
         Bitmap original = selectedImage;
         selectedImage = ConvertToGrayscale(selectedImage); // converts resized image to grayscale
         Log.i(TAG, "GRAYSCALE DONE");
@@ -150,10 +155,15 @@ public class InterpretPage extends AppCompatActivity {
 
     public void GetOutput(byte[] inputArray, Bitmap original) {
         Log.i(TAG, "getting output");
-        // if data is returned by the cursor
-        Thread ImageThread = new Thread(r);
-        ImageThread.start(); // perform the db query on a different thread
-        if (dbImages.moveToFirst()) {
+        //if data is returned by the cursor
+        byte[] image = dbImages.getBlob(1);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        Bitmap source = BitmapFactory.decodeByteArray(image, 0, image.length, options);
+        ImageView imageView = (ImageView) findViewById(R.id.check);
+        imageView.setImageBitmap(source);
+
+
+/*        if (dbImages.moveToFirst()) {
             //get the blob from the db as a byte array and make the first image as ldiff
             byte[] image = dbImages.getBlob(1);
             double ldiff = Diff(inputArray, image);
@@ -177,6 +187,7 @@ public class InterpretPage extends AppCompatActivity {
         outputPage.putExtra("Height", original.getHeight());
         outputPage.putExtra("Width", original.getWidth());
         startActivity(outputPage);
+        */
     }
     public Bitmap Resize(Bitmap Original){
         Log.i(TAG, "RESIZING");
