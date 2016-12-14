@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.userpc.sli" >
-<user-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <user-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature
-        android:name="android.hardware.Camera"
+        android:name="android.hardware.camera2.CameraDevice"
         android:required="true" />
 
     <application
@@ -30,11 +32,6 @@
         <activity
             android:name=".InterpretPage"
             android:label="@string/title_activity_interpret_page"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity

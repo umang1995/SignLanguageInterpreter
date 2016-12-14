@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.example.userpc.sli.LearnFragment"
+    android:background="@drawable/learn_background">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alphabets"
+        android:id="@+id/AlphabetButton"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@+id/NumberBtn"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numbers"
+        android:id="@+id/NumberBtn"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/AlphabetButton"
+        android:onClick="Number"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emotions"
+        android:id="@+id/button3"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@+id/AlphabetButton"
+        android:layout_toStartOf="@+id/AlphabetButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Family"
+        android:id="@+id/button4"
+        android:layout_marginLeft="15dp"
+        android:layout_alignTop="@+id/button5"
+        android:layout_alignEnd="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUESTIONS"
+        android:id="@+id/button5"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/AlphabetButton"
+        android:layout_toEndOf="@+id/button4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DAY TO DAY"
+        android:id="@+id/button6"
+        android:layout_alignTop="@+id/button5"
+        android:layout_toEndOf="@+id/button5"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="0dp" />
+
+</RelativeLayout>

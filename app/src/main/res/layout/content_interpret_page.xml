@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.userpc.sli.InterpretPage"
-    tools:showIn="@layout/activity_interpret_page">
+    tools:showIn="@layout/activity_interpret_page"
+    android:background="@drawable/learn_background">
 
     <Button
         android:id="@+id/GALLERY"
@@ -26,18 +27,10 @@
         android:id="@+id/myCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="LaunchCamera"
+        android:text="Camera"
         android:layout_below="@+id/GALLERY"
         android:layout_centerHorizontal="true"
-        android:onClick="LaunchCamera"
-        android:text="Camera" />
+        android:layout_marginTop="157dp" />
 
-    <ImageView
-        android:id="@+id/check"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/myCamera"
-        android:layout_marginBottom="110dp"
-        android:layout_marginRight="119dp"
-        android:layout_marginTop="110dp" />
 </RelativeLayout>

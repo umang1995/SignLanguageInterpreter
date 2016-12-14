@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/OutputImageView"
         android:layout_marginTop="59dp"
-        android:minHeight="128dp"
-        android:minWidth="128dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="#fd0101"
@@ -25,18 +23,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="OUTPUT"
         android:id="@+id/OutputTextView"
         android:layout_alignBottom="@+id/OutputImageView"
         android:layout_alignStart="@+id/OutputImageView"
-        android:minWidth="100dp" />
+        android:textColor="#ffffff" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/SaveButton"
-        android:layout_centerVertical="true"
+        android:onClick="save"
+        android:layout_alignTop="@+id/button7"
         android:layout_toStartOf="@+id/OutputImageView" />
 
     <Button
@@ -44,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="ListenOutput"
         android:id="@+id/button7"
-        android:layout_alignTop="@+id/SaveButton"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="57dp" />
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/OutputImageView"
+        android:onClick="Listen" />
 </RelativeLayout>

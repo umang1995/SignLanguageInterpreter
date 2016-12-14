@@ -10,7 +10,7 @@ import android.util.Log;
 /**
  * Created by user pc on 3/11/2016.
  */
-class DbHelper {
+public class DbHelper {
 
 
     private static final String TAG = "InterpretPage";
@@ -24,7 +24,7 @@ class DbHelper {
         Log.i(TAG, "ENTERED IN DBHELPER");
     }
 
-    private static DbHelper getInstance(Context context) {
+    public static DbHelper getInstance(Context context) {
         if (dbHelper == null) {
             dbHelper = new DbHelper(context);
         }
@@ -32,7 +32,8 @@ class DbHelper {
     }
 
     public void open() {
-        this.database = openHelper.getWritableDatabase();
+        Log.i(TAG, "trying to get database");
+            this.database = openHelper.getReadableDatabase();
         Log.i(TAG, "GOT THE DATABASE");
     }
 
@@ -43,16 +44,28 @@ class DbHelper {
     }
 
     public Cursor getImages() {
-        Log.i(TAG, "BUILDING QUERY");
-        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         Log.i(TAG, "QUERY RETURNED CURSOR");
         cursor = database.rawQuery("SELECT * from Image", null);
         Log.i(TAG, "MOVE TO FIRST AND RETURN");
         cursor.moveToFirst();
         return cursor;
     }
+    public Cursor getNumber(){
+        Log.i(TAG,"getting numbers");
+        cursor = database.rawQuery("SELECT * from Image where Name between 1 and 9 order by Name",null);
+        Log.i(TAG,"query processed");
+        cursor.moveToFirst();
+        return cursor;
+    }
+    public Cursor getAlphabet(){
+        Log.i(TAG,"getting numbers");
+        cursor = database.rawQuery("SELECT * from Image where Name between 'a' and 'z' order by Name",null);
+        Log.i(TAG,"query processed");
+        cursor.moveToFirst();
+        return cursor;
+    }
 
-    public void closeCursor() {
+    public void closeCursor(Cursor cursor) {
         if (!cursor.isClosed()) {
             cursor.close();
         }
